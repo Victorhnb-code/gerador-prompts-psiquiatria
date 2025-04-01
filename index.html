@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Prompts para Questões Psiquiátricas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    button {
+      margin: 0.5rem 0;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #e0e0e0;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d0d0d0;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador de Prompts para Questões de Psiquiatria</h1>
+
+  <p>Escolha um modelo de prompt:</p>
+
+  <button onclick="gerar('padrao')">🎓 Padrão clínico completo</button>
+  <button onclick="gerar('diferencial')">🧩 Diagnóstico diferencial</button>
+  <button onclick="gerar('conduta')">💊 Conduta clínica</button>
+  <button onclick="gerar('armadilha')">🧠 Raciocínio clínico com armadilha</button>
+  <button onclick="gerar('etico')">⚖️ Ético-legal</button>
+
+  <textarea id="saida" placeholder="O prompt gerado aparecerá aqui..."></textarea>
+
+  <script>
+    const modelos = {
+      padrao: `Crie uma questão de múltipla escolha com nível técnico elevado, no estilo de prova prática do internato médico. O tema é: [INSIRA TEMA].
+
+A questão deve conter:
+- Um enunciado clínico detalhado e realista (com dados semiológicos, sociais, legais, psíquicos e histórico médico);
+- Cinco alternativas, com apenas uma correta;
+- Um comentário aprofundado com:
+  - Justificativa da alternativa correta com base no DSM-5-TR, CID-11 e/ou legislação brasileira;
+  - Crítica técnica às alternativas incorretas;
+- O nível deve corresponder ao de um aluno do último período de Medicina.`,
+
+      diferencial: `Crie uma questão clínica de múltipla escolha com foco em diagnóstico diferencial. O tema é: [INSIRA TEMA].
+
+O enunciado deve conter características sugestivas de dois ou mais diagnósticos possíveis, exigindo diferenciação por dados semiológicos e epidemiológicos.
+Comente a resposta correta e justifique a exclusão das outras com base no DSM-5-TR e diretrizes atuais.`,
+
+      conduta: `Crie uma questão de múltipla escolha com foco em conduta psiquiátrica. O tema é: [INSIRA TEMA].
+
+O enunciado deve apresentar um caso clínico realista com impasse terapêutico (ex: risco, recusa, gestação, etc.). As alternativas devem abordar condutas possíveis.
+Justifique a alternativa correta com base no DSM-5-TR, diretrizes brasileiras e legislação nacional.`,
+
+      armadilha: `Crie uma questão sobre [INSIRA TEMA] com armadilha diagnóstica cognitiva (ex: viés de confirmação).
+
+O enunciado deve conter dados que levem à resposta incorreta mais intuitiva.
+A resposta correta deve contrariar o erro e ser justificada por critérios técnicos sólidos (DSM-5-TR).`,
+
+      etico: `Crie uma questão de múltipla escolha com foco em dilemas ético-legais da prática psiquiátrica. O tema é: [INSIRA TEMA].
+
+O enunciado deve envolver conflito de princípios (ex: autonomia vs. segurança, sigilo vs. dever legal, internação involuntária).
+Comente a resposta correta com base na legislação brasileira (Lei nº 10.216/2001), no Código de Ética Médica e nas diretrizes da psiquiatria.`
+    };
+
+    function gerar(tipo) {
+      document.getElementById('saida').value = modelos[tipo];
+    }
+  </script>
+</body>
+</html>
